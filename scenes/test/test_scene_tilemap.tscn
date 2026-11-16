@@ -2,6 +2,12 @@
 
 [ext_resource type="TileSet" uid="uid://ct1dimtwqv7xd" path="res://tilesets/game_tile_set.tres" id="1_eybdx"]
 [ext_resource type="PackedScene" uid="uid://bfisdv4qj5xtt" path="res://scenes/characters/player/player.tscn" id="2_j2mka"]
+[ext_resource type="PackedScene" uid="uid://fqnnx2f1pjp7" path="res://scenes/characters/chicken/chicken.tscn" id="3_o1akv"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_73hr5"]
+vertices = PackedVector2Array(273.9297, 189, 81.4375, 170.84375, 75.53906, 77.390625, 273.0703, 44.773438)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(65, 69, 283, 33, 284, 200, 72, 180)])
 
 [node name="TestSceneTilemap" type="Node2D" unique_id=74882991]
 
@@ -24,6 +30,23 @@ tile_set = ExtResource("1_eybdx")
 tile_map_data = PackedByteArray("AAARAAIABgAAAAAAAQARAAQABgAAAAAAAQARAAYABgAAAAAAAQARAAgABgAAAAAAAQARAAoABgAAAAAAAQARAAwABgAAAAAAAQAQAAwABgAAAAAAAQAQAAoABgAAAAAAAQAQAAgABgAAAAAAAQAQAAYABgAAAAAAAQAQAAQABgAAAAAAAQAQAAIABgAAAAAAAQAPAAIABgAAAAAAAQAPAAQABgAAAAAAAQAPAAYABgAAAAAAAQAPAAgABgAAAAAAAQAPAAoABgAAAAAAAQAPAAwABgAAAAAAAQA=")
 tile_set = ExtResource("1_eybdx")
 
-[node name="Player" parent="GameTilemap" unique_id=2033383533 instance=ExtResource("2_j2mka")]
+[node name="Player" parent="." unique_id=2033383533 instance=ExtResource("2_j2mka")]
 position = Vector2(158, 51)
 current_tool = 1
+
+[node name="Chickens" type="Node" parent="." unique_id=764376764]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Chickens" unique_id=1374073956]
+navigation_polygon = SubResource("NavigationPolygon_73hr5")
+
+[node name="Chicken" parent="Chickens" unique_id=1390416261 instance=ExtResource("3_o1akv")]
+position = Vector2(181, 107)
+
+[node name="Chicken2" parent="Chickens" unique_id=1945672959 instance=ExtResource("3_o1akv")]
+position = Vector2(207, 159)
+
+[node name="Chicken3" parent="Chickens" unique_id=417205220 instance=ExtResource("3_o1akv")]
+position = Vector2(127, 94)
+
+[node name="Chicken4" parent="Chickens" unique_id=1244912449 instance=ExtResource("3_o1akv")]
+position = Vector2(150, 130)
