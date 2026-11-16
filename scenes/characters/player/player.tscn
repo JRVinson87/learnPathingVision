@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://bfisdv4qj5xtt"]
 
+[ext_resource type="Script" uid="uid://cayhrwonr8qr6" path="res://scenes/characters/player/player.gd" id="1_6avc5"]
 [ext_resource type="Texture2D" uid="uid://q2uwxrogom0r" path="res://assets/game/characters/basic_char_actions.png" id="1_t61fv"]
 [ext_resource type="Texture2D" uid="uid://b05wd5681b33a" path="res://assets/game/characters/basic_char_spritesheet.png" id="2_686vu"]
+[ext_resource type="Script" uid="uid://c4vastiv3re8d" path="res://scripts/state_machine/node_state_machine.gd" id="3_hss88"]
+[ext_resource type="Script" uid="uid://c7qecug47ouup" path="res://scenes/characters/player/idle_state.gd" id="4_qd3e3"]
+[ext_resource type="Script" uid="uid://dydghl72yhx4q" path="res://scenes/characters/player/walk_state.gd" id="5_qd3e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hss88"]
 atlas = ExtResource("1_t61fv")
@@ -391,6 +395,7 @@ radius = 5.0
 height = 18.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2033383533]
+script = ExtResource("1_6avc5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=250770845]
 position = Vector2(0, -8)
@@ -401,3 +406,17 @@ autoplay = "idle_front"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=597593666]
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_73hr5")
+
+[node name="StateMachine" type="Node" parent="." unique_id=496895529 node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("3_hss88")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1501226191 node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("4_qd3e3")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1469610105 node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("5_qd3e3")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
